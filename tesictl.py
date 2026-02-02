@@ -1,9 +1,3 @@
-#!/usr/bin/env python3
-"""
-TESI Project - Covert Channel Creation Toolkit (DNSSEC-focused)
-Main CLI entry point and orchestrator
-"""
-
 import typer
 import sys
 import json
