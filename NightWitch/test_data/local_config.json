@@ -1,0 +1,6 @@
+{
+  "dns_server": "8.8.8.8",
+  "test_domain": "example.test",
+  "local_mode": true,
+  "skip_ids": true
+}

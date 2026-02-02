@@ -1,0 +1,10 @@
+{
+  "name": "wan-test",
+  "domain": "example.test",
+  "carrier": "dnskey",
+  "ttl": 60,
+  "chunk_size": 300,
+  "frequency": "10s",
+  "encryption": "aes256",
+  "created": "2026-01-05T22:55:24.361625"
+}

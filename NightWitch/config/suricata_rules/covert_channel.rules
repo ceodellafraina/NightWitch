@@ -1,0 +1,6 @@
+alert dns any any -> any any (msg:"Possible DNS Covert Channel - High Entropy"; dns.query; content:!".com"; content:!".org"; content:!".net"; threshold:type limit, track by_src, count 10, seconds 60; sid:1000001; rev:1;)
+alert dns any any -> any any (msg:"DNSSEC Anomaly - Unusual DNSKEY Size"; dns.query; dns.rrtype:48; dsize:>512; threshold:type limit, track by_src, count 5, seconds 30; sid:1000002; rev:1;)
+alert dns any any -> any any (msg:"DNS Timing Anomaly"; dns.query; threshold:type threshold, track by_src, count 50, seconds 10; sid:1000003; rev:1;)
+alert dns any any -> any any (msg:"Possible Base64 in DNS Query"; dns.query; pcre:"/[A-Za-z0-9+\/]{20,}={0,2}/"; threshold:type limit, track by_src, count 3, seconds 60; sid:1000004; rev:1;)
+alert dns any any -> any any (msg:"DNSSEC Covert Channel - Sequential DNSKEY"; dns.query; dns.rrtype:48; content:"test.local"; threshold:type threshold, track by_src, count 10, seconds 30; sid:1000005; rev:1;)
+alert dns any any -> any any (msg:"DNS TXT Covert Channel"; dns.query; dns.rrtype:16; dsize:>200; threshold:type limit, track by_src, count 5, seconds 60; sid:1000006; rev:1;)
