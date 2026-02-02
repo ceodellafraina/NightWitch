@@ -1,2 +1,0 @@
-This is a sample file for testing the TESI covert channel toolkit.
-Local mode allows testing without Docker containers.
