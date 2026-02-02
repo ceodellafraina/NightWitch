@@ -15,7 +15,7 @@ from src.firewall_detector import FirewallDetector
 from src.analytics import Analytics
 from src.lan_ids_tester import LANIDSTester
 
-app = typer.Typer(help="TESI Covert Channel Creation Toolkit - Research PoC")
+app = typer.Typer(help="NightWitch Covert Channel Creation Toolkit - Research PoC")
 
 # Global configuration
 CONFIG_DIR = Path.home() / ".tesi"
