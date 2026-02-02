@@ -1,0 +1,48 @@
+# IDS Testing Configuration
+suricata:
+  enabled: true
+  config_path: "/etc/suricata/suricata.yaml"
+  rules_path: "./config/suricata_rules/"
+  log_path: "./logs/ids_testing/suricata/"
+  interface: "eth0"
+
+zeek:
+  enabled: true
+  config_path: "/usr/local/zeek/etc/zeekctl.cfg"
+  log_path: "/usr/local/zeek/logs/"
+  scripts_path: "/usr/local/zeek/share/zeek/site/"
+
+scapy:
+  enabled: true
+  capture_filter: "udp port 53 or udp port 5353"
+  packet_count: 0  # 0 = unlimited
+  timeout: 300  # 5 minutes
+
+lan_testing:
+  receiver_ip: "192.168.1.5"
+  receiver_interface: "enp0s1"
+  sender_ip: "192.168.1.7"
+  sender_interface: "eth0"
+  test_port: 5353
+
+test_scenarios:
+  - "baseline_traffic"
+  - "covert_channel_detection"
+  - "evasion_techniques"
+  - "performance_impact"
+
+detection_thresholds:
+  dns_query_rate: 100
+  suspicious_domains: 10
+  entropy_threshold: 0.8
+  timing_anomaly: 0.3
+  packet_size_anomaly: 512
+
+reporting:
+  output_format: "json"
+  include_raw_logs: false
+  stealth_score_weights:
+    suricata_alerts: 0.4
+    zeek_alerts: 0.3
+    timing_patterns: 0.2
+    entropy_analysis: 0.1

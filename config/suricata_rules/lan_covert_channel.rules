@@ -1,0 +1,11 @@
+# LAN Covert Channel Detection Rules
+# Generated: 2025-10-03T16:04:11.680250
+# Sender: 192.168.1.7, Receiver: 192.168.1.5
+
+alert dns 192.168.1.7 any -> 192.168.1.5 any (msg:"LAN DNS Covert Channel - High Entropy Query"; dns.query; pcre:"/[A-Za-z0-9+\/]{30,}/"; threshold:type limit, track by_src, count 5, seconds 60; sid:2000001; rev:1;)
+alert dns 192.168.1.7 any -> 192.168.1.5 any (msg:"LAN DNSSEC Covert Channel - Large DNSKEY"; dns.query; dns.rrtype:48; dsize:>400; threshold:type threshold, track by_src, count 10, seconds 30; sid:2000002; rev:1;)
+alert dns 192.168.1.7 any -> 192.168.1.5 any (msg:"LAN DNS Timing Anomaly - Rapid Queries"; dns.query; threshold:type threshold, track by_src, count 30, seconds 10; sid:2000003; rev:1;)
+alert dns 192.168.1.7 any -> 192.168.1.5 any (msg:"LAN DNS Covert - Base64 Pattern"; dns.query; pcre:"/^[A-Za-z0-9+\/]{20,}={0,2}\./"; threshold:type limit, track by_src, count 3, seconds 60; sid:2000004; rev:1;)
+alert dns 192.168.1.7 any -> 192.168.1.5 any (msg:"LAN DNSSEC Sequential Pattern"; dns.query; dns.rrtype:48; content:"covert"; nocase; threshold:type threshold, track by_src, count 5, seconds 20; sid:2000005; rev:1;)
+alert dns 192.168.1.5 any -> 192.168.1.7 any (msg:"LAN DNS Large Response"; dsize:>512; threshold:type limit, track by_dst, count 5, seconds 60; sid:2000006; rev:1;)
+alert udp 192.168.1.7 any -> 192.168.1.5 5353 (msg:"LAN DNS Non-Standard Port 5353"; content:"|00 00|"; offset:2; depth:2; threshold:type threshold, track by_src, count 20, seconds 60; sid:2000007; rev:1;)

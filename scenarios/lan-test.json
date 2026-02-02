@@ -1,0 +1,10 @@
+{
+  "name": "lan-test",
+  "domain": "covert.test",
+  "carrier": "dnskey",
+  "ttl": 30,
+  "chunk_size": 200,
+  "frequency": "5s",
+  "encryption": "aes256",
+  "created": "2026-01-02T12:38:57.601346"
+}

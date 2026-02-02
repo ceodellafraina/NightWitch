@@ -1,0 +1,11 @@
+$ORIGIN covert.test.
+$TTL 30
+@       IN      SOA     ns1.covert.test. admin.covert.test. (
+                        2023010101      ; Serial
+                        3600            ; Refresh
+                        1800            ; Retry
+                        604800          ; Expire
+                        30 )         ; Minimum TTL
+
+        IN      NS      ns1.covert.test.
+ns1     IN      A       192.168.1.1
